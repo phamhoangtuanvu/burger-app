@@ -1,8 +1,11 @@
 import React, { useState } from "react"
 import Burger from "../../components/Burger/Burger"
 import BuildControls from "../../components/Burger/BuildControls/BuildControls";
-import Modal from "../../components/UI/Modal/Modal";
-import OrderSummary from "../../components/Burger/OrderSummary/OrderSummary";
+import Modal from "../../components/UI/Modal/Modal"
+import OrderSummary from "../../components/Burger/OrderSummary/OrderSummary"
+
+import axios from '../../axios-orders'
+import Spinner from "../../components/UI/Spinner/Spinner";
 
 function BurgerBuilder(props) {
 
@@ -23,6 +26,7 @@ function BurgerBuilder(props) {
         totalPrice: 4,
         purchasable: false,
         purchaseModal: false,
+        loading: false,
     });
 
     function addIngredientHandler(type) {
@@ -77,7 +81,40 @@ function BurgerBuilder(props) {
     }
 
     function purchaseContinueHandler() {
-        alert('Continue')
+
+        setState({
+            ...state,
+            loading: true,
+        })
+
+        const order = {
+            ingredients: state.ingredients,
+            price: state.totalPrice,
+            customer: {
+                name: 'Vu',
+                address: {
+                    street: 'NTT',
+                    district: '7',
+                },
+                email: 'tuanvu.iris@gmail.com'
+            },
+        }
+
+        axios.post('/orders.json', order)
+            .then(response => {
+                setState({
+                    ...state,
+                    loading: false,
+                    purchaseModal: false,
+                })
+            })
+            .catch(err => {
+                setState({
+                    ...state,
+                    loading: false,
+                    purchaseModal: false,
+                })
+            })
     }
 
     return (
@@ -87,12 +124,14 @@ function BurgerBuilder(props) {
                 show={state.purchaseModal}
                 closeModal={updatePurchaseModalState}
             >
-                <OrderSummary
-                    ingredients={state.ingredients}
-                    purchaseCancel={purchaseCancelHandler}
-                    purchaseContinue={purchaseContinueHandler}
-                    price={state.totalPrice}
-                />
+                {state.loading ?
+                    <Spinner /> :
+                    <OrderSummary
+                        ingredients={state.ingredients}
+                        purchaseCancel={purchaseCancelHandler}
+                        purchaseContinue={purchaseContinueHandler}
+                        price={state.totalPrice}
+                    />}
             </Modal>
 
             <Burger

@@ -14,7 +14,7 @@ function SideDrawer(props) {
         <React.Fragment>
             {props.display && <Backdrop click={props.closeSideDrawer} />}
             <div className={attachedClasses.join(' ')}>
-                <Logo height='11%' />
+                <Logo height='20%' />
                 <nav>
                     <NavigationItems />
                 </nav>

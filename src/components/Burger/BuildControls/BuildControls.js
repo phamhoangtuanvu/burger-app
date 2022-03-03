@@ -3,26 +3,26 @@ import BuildControl from "./BuildControl/BuildControl"
 import classes from './BuildControls.module.css'
 
 function BuildControls(props) {
-    
+
     const ingredients = Object.keys(props.ingredients)
 
     return (
         <div className={classes.BuildControls}>
-            <p>Current Price {props.price}</p> 
+            <p className={classes.CurrentPrice}>Current Price: {props.price} $</p>
             {ingredients.map((ingredient, index) => {
                 return <BuildControl
-                    key = {ingredient}
-                    label = {ingredient}
-                    addIngredient = {props.addIngredient}
-                    removeIngredient = {props.removeIngredient}
-                    outOfIngredientFlag = {props.ingredients[ingredient] === 0}
+                    key={ingredient}
+                    label={ingredient}
+                    addIngredient={props.addIngredient}
+                    removeIngredient={props.removeIngredient}
+                    outOfIngredientFlag={props.ingredients[ingredient] === 0}
                 />
             })}
 
-            <button 
+            <button
                 className={classes.OrderButton}
                 disabled={!props.purchasable}
-                onClick={props.purchaseModal}   
+                onClick={props.purchaseModal}
             >
                 ORDER NOW
             </button>

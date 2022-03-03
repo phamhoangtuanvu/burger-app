@@ -1,12 +1,12 @@
 .NavigationItem {
-    margin: 0;
+    margin: 10px 0;
     box-sizing: border-box;
     display: block;
     width: 100%;
 }
 
 .NavigationItem a {
-    color: rgb(97, 25, 25);
+    color: #fff;
     text-decoration: none;
     box-sizing: border-box;
     display: block;
@@ -15,7 +15,7 @@
 
 .NavigationItem a:hover,
 .NavigationItem a.active {
-    color: aqua;
+    color: #b20637;
 }
 
 @media (min-width: 500px) {
@@ -28,7 +28,7 @@
     }
 
     .NavigationItem a {
-        color: rgb(97, 25, 25);
+        
         text-decoration: none;
         padding: 15px 10px;
         border-bottom: 4px solid transparent;

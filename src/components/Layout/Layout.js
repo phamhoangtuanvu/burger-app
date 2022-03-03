@@ -29,10 +29,12 @@ function Layout(props) {
             <Toolbar
                 openSideDrawer={openSideDrawerHandler}
             ></Toolbar>
+
             <SideDrawer
                 display={state.displaySideDrawer}
                 closeSideDrawer={closeSideDrawerHandler}
             />
+
             <main className={classes.Content}>
                 {props.children}
             </main>
