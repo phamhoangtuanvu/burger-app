@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Burger from "../../components/Burger/Burger"
 import BuildControls from "../../components/Burger/BuildControls/BuildControls";
 import Modal from "../../components/UI/Modal/Modal"
@@ -28,6 +28,13 @@ function BurgerBuilder(props) {
         purchaseModal: false,
         loading: false,
     });
+
+    useEffect(() => {
+        axios.get('/orders.json')
+            .then(response => console.log(response))
+        return () => {
+        };
+    }, []);
 
     function addIngredientHandler(type) {
         const newIngredients = { ...state.ingredients }
@@ -116,6 +123,7 @@ function BurgerBuilder(props) {
                 })
             })
     }
+
 
     return (
         <React.Fragment>

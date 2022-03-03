@@ -6,7 +6,7 @@ function NavigationItems(props) {
     return (
         <ul className={classes.NavigationItems}>
             <NavigationItem
-                link="/"
+                link="#"
                 active
             >BurgerBuilder</NavigationItem>
             <NavigationItem
