@@ -16,13 +16,4 @@ app.listen(3000, function () {
   console.log("Node app is running on port 3000");
 });
 
-var dbConn = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "node_js_api",
-});
-// kết nối vào cơ sở dữ liệu
-dbConn.connect();
-
 module.exports = app;
